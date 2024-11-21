@@ -3,6 +3,7 @@ import { Profile, StrategyOptions } from './types';
 import axios from 'axios';
 
 export class GitLabStrategy extends PassportStrategy {
+  name: string;
   private baseUrl: string;
   private clientID: string;
   private clientSecret: string;
@@ -19,6 +20,7 @@ export class GitLabStrategy extends PassportStrategy {
     ) => void,
   ) {
     super();
+    this.name = 'gitlab';
     this.baseUrl = options.baseUrl || 'https://gitlab.com';
     this.clientID = options.clientID;
     this.clientSecret = options.clientSecret;
