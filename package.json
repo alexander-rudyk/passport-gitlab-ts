@@ -1,0 +1,78 @@
+{
+  "name": "passport-gitlab-ts",
+  "version": "1.0.0",
+  "description": "GitLab OAuth2 authentication strategy for Passport, written in TypeScript.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "lint": "eslint './lib/**/*.ts'",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "passport",
+    "gitlab",
+    "oauth2",
+    "typescript",
+    "authentication"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alexander-rudyk/passport-gitlab-ts.git"
+  },
+  "author": "Oleksandr Rudyk alakai.1998.28@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alexander-rudyk/passport-gitlab-ts/issues"
+  },
+  "homepage": "https://github.com/alexander-rudyk/passport-gitlab-ts#readme",
+  "dependencies": {
+    "axios": "^1.7.7",
+    "passport": "^0.7.0",
+    "passport-strategy": "^1.0.0",
+    "typescript": "^5.6.3"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.13",
+    "@types/node": "^22.9.1",
+    "@types/passport": "^1.0.17",
+    "@types/passport-strategy": "^0.2.38",
+    "@typescript-eslint/eslint-plugin": "^8.10.0",
+    "@typescript-eslint/parser": "^8.10.0",
+    "eslint": "^8.42.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.0.0",
+    "ts-jest": "^29.2.5",
+    "typescript-eslint": "^8.10.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "lib",
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
+  }
+}

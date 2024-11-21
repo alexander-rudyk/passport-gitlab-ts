@@ -1,0 +1,6 @@
+lib/
+.vscode/
+.gitignore
+tsconfig.json
+.prettierrc
+.eslintrc.js
