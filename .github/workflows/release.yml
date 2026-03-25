@@ -1,12 +1,9 @@
-name: release
+name: Release
 
 on:
   push:
-    branches: [main]
-
-concurrency:
-  group: release-${{ github.ref }}
-  cancel-in-progress: false
+    branches:
+      - main
 
 permissions:
   contents: write
@@ -16,17 +13,17 @@ permissions:
 
 jobs:
   release:
-    name: release
+    name: Release
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v6
+      - name: Check out repository
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
+      - name: Use Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 22.14.0
           cache: npm
@@ -34,18 +31,16 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Verify tests
+      - name: Test
         run: npm test
 
-      - name: Verify lint
-        run: npm run lint
-
-      - name: Build package
+      - name: Build
         run: npm run build
 
+      - name: Lint
+        run: npm run lint
+
       - name: Release
-        run: npm exec semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # Якщо НЕ налаштуєш npm trusted publishing, тоді додай repo secret NPM_TOKEN
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npx semantic-release
