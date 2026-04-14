@@ -6,7 +6,8 @@ import { GitLabStrategy } from './strategy';
 jest.mock('axios');
 const mockedAxios = mocked(axios, { shallow: false });
 
-const flushPromises = () => new Promise<void>((resolve) => setImmediate(resolve));
+const flushPromises = () =>
+  new Promise<void>((resolve) => setImmediate(resolve));
 
 describe('GitLabStrategy', () => {
   const mockVerify = jest.fn();
@@ -143,11 +144,14 @@ describe('GitLabStrategy', () => {
     const mockSuccess = jest.fn();
 
     (strategy as any).success = mockSuccess;
-    mockVerify.mockImplementationOnce((_accessToken, _refreshToken, _profile, done) =>
-      done(null, verifiedUser),
+    mockVerify.mockImplementationOnce(
+      (_accessToken, _refreshToken, _profile, done) => done(null, verifiedUser),
     );
     mockedAxios.post.mockResolvedValueOnce({
-      data: { access_token: 'test-access-token', refresh_token: 'test-refresh-token' },
+      data: {
+        access_token: 'test-access-token',
+        refresh_token: 'test-refresh-token',
+      },
     });
     mockedAxios.get.mockResolvedValueOnce({ data: mockProfileData });
 
@@ -164,11 +168,14 @@ describe('GitLabStrategy', () => {
     const mockErrorHandler = jest.fn();
 
     (strategy as any).error = mockErrorHandler;
-    mockVerify.mockImplementationOnce((_accessToken, _refreshToken, _profile, done) =>
-      done(verifyError),
+    mockVerify.mockImplementationOnce(
+      (_accessToken, _refreshToken, _profile, done) => done(verifyError),
     );
     mockedAxios.post.mockResolvedValueOnce({
-      data: { access_token: 'test-access-token', refresh_token: 'test-refresh-token' },
+      data: {
+        access_token: 'test-access-token',
+        refresh_token: 'test-refresh-token',
+      },
     });
     mockedAxios.get.mockResolvedValueOnce({ data: mockProfileData });
 

@@ -13,6 +13,7 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "lint": "eslint './lib/**/*.ts'",
+    "lint:fix": "eslint './lib/**/*.ts' --fix",
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
     "clean": "rm -rf dist"
